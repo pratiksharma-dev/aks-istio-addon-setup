@@ -14,7 +14,7 @@ az provider register --namespace Microsoft.ContainerService
 ## Install Istio add-on for existing cluster
 az aks mesh enable --resource-group ${RESOURCE_GROUP} --name ${CLUSTER}
 
-## Bicep template to deploy AKS with Istio https://github.com/Azure-Samples/aks-istio-addon-bicep
+## Bicep template in case you want to deploy new AKS cluster with Istio https://github.com/Azure-Samples/aks-istio-addon-bicep
 
 ## Verify successful installation
 kubectl get pods -n aks-istio-system
