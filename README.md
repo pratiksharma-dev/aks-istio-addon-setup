@@ -68,7 +68,7 @@ curl -s "http://domain-name.com/productpage" | grep -o "<title>.*</title>"
 
 curl -s "https://domain-name.com/productpage" | grep -o "<title>.*</title>"
 
-## --------------------------------Making Gateway API in Kubernetes work with cert-manager and letsencrypt-----------------------------------------------
+## Making Gateway API in Kubernetes work with cert-manager and letsencrypt
 
 ## Install GatewayAPI CRD's
 kubectl get crd gateways.gateway.networking.k8s.io &> /dev/null || \
