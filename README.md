@@ -63,9 +63,10 @@ openssl rsa -in ./cert.key -out cert-decrypted.key
 ## Create a secret in istio-ingress namespace for istio gateway
 kubectl create secret tls istio-ingress-cert-2 --cert istio-ingress-cert.crt --key cert-decrypted.key -n aks-istio-ingress
 
-curl -s "https://domain-name.com/productpage" | grep -o "<title>.*</title>"
-
+## Test if DNS mapping and certificate are working
 curl -s "http://domain-name.com/productpage" | grep -o "<title>.*</title>"
+
+curl -s "https://domain-name.com/productpage" | grep -o "<title>.*</title>"
 
 ## --------------------------------Making Gateway API in Kubernetes work with cert-manager and letsencrypt-----------------------------------------------
 
@@ -84,23 +85,15 @@ helm upgrade cert-manager jetstack/cert-manager \
     --set installCRDs=true \
     --set "extraArgs={--feature-gates=ExperimentalGatewayAPISupport=true}"
 
-## Setup Cluster Issuer
-kubectl apply -f ./cluster-issuer.yaml
-
-## Create certificate
-kubectl apply -f ./create-certificate.yaml
-
+## Setup Certificate Issuer, Gateway API configuration and http routes
 kubectl apply -f ./gateway-api.yaml
 
 kubectl apply -f ./http-route.yaml
 
-##istioctl proxy-config listener -n aks-istio-ingress aks-istio-ingressgateway-external-asm-1-17-597f64576d-blw5q
-
-##kubectl apply -f ./ingress-class.yaml
+## Test if DNS mapping and certificate are working
+curl -s "http://test.domain-name.com/productpage" | grep -o "<title>.*</title>"
 
 curl -s "https://test.domain-name.com/productpage" | grep -o "<title>.*</title>"
-
-curl -s "http://test.domain-name.com/productpage" | grep -o "<title>.*</title>"
 
 
 
