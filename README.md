@@ -60,7 +60,7 @@ openssl rsa -in ./cert.key -outform PEM -out cert-pem.key
 
 openssl rsa -in ./cert.key -out cert-decrypted.key
 
-## Create a secret in istio-ingress namespace for istio gateway
+## Create a secret in istio-ingress namespace for istio gateway (For enabling HTTPS both ingress gateway and secret should be present in istio-ingress namespace)
 kubectl create secret tls istio-ingress-cert-2 --cert istio-ingress-cert.crt --key cert-decrypted.key -n aks-istio-ingress
 
 ## Test if DNS mapping and certificate are working
