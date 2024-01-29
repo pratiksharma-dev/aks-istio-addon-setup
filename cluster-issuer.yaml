@@ -5,11 +5,12 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: <valid email address>
+    email: <email address>
     server: https://acme-v02.api.letsencrypt.org/directory
     privateKeySecretRef:
       name: letsencrypt-prod-cluster
     solvers:
     - http01:
         ingress:
-          class: istio
+          ingressClassName: istio
+          #class: istio

@@ -15,9 +15,9 @@ spec:
   usages:
     - server auth
     - client auth
-  commonName: '<domain name>'
+  commonName: 'domain name'
   dnsNames:
-    - '<domain name>'
+    - 'domain name'
   issuerRef:
     name: letsencrypt-prod-cluster
     kind: ClusterIssuer
